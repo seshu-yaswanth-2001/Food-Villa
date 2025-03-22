@@ -1,0 +1,29 @@
+{
+  "name": "food-villa",
+  "version": "1.0.0",
+  "description": "Food App",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seshu-yaswanth-2001/Food-Villa.git"
+  },
+  "author": "Seshu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seshu-yaswanth-2001/Food-Villa/issues"
+  },
+  "homepage": "https://github.com/seshu-yaswanth-2001/Food-Villa#readme",
+  "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "parcel": "^2.14.1"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

@@ -1,0 +1,15 @@
+.logo {
+  width: 90px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+}
+.navItems > ul {
+  list-style-type: none;
+  display: flex;
+}
+.navItems > ul > li {
+  padding: 10px;
+}
