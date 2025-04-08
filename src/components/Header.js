@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const Title = () => {
   return (
     <a href="/">
@@ -14,6 +16,7 @@ const Title = () => {
 // When Exporting Named Export we need to import by using curly braces
 // import {Header} from "./components/Header";
 export const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className="header">
       <Title />
@@ -25,6 +28,11 @@ export const Header = () => {
           <li>Cart</li>
         </ul>
       </div>
+      {isLoggedIn ? (
+        <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+      ) : (
+        <button onClick={() => setIsLoggedIn(true)}>Login</button>
+      )}
     </div>
   );
 };
