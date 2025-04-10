@@ -1,6 +1,8 @@
 import Card from "./Card";
 // import { foodRecipes } from "../constants";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Shimmer from "./Shimmer";
 
 function filterData(searchInput, recipes) {
   return recipes.filter((recipe) =>
@@ -48,7 +50,9 @@ const Body = () => {
   // }
   // Shimmer need to learn
 
-  return (
+  return allRecipes.length === 0 ? (
+    <Shimmer />
+  ) : (
     <>
       <div className="Search">
         <input
@@ -69,7 +73,11 @@ const Body = () => {
       </div>
       <div className="list">
         {filteredRecipes.length > 0 ? (
-          filteredRecipes.map((data) => <Card key={data.id} {...data} />)
+          filteredRecipes.map((data) => (
+            <Link key={data.id} to={"/foods/" + data.id}>
+              <Card {...data} />
+            </Link>
+          ))
         ) : (
           <p>Sorry, Please try Again</p>
         )}
