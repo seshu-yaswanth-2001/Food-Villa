@@ -4,8 +4,9 @@ import Shimmer from "./Shimmer";
 
 const ReceipePage = () => {
   // useparams return id so directly destructing it
-  // else you can write const param = useParams();
-  const { id } = useParams();
+  // else you can write const param = useParams();\
+  const params = useParams();
+  // const { id } = params;
   const [recipe, setRecipe] = useState(null);
 
   useEffect(() => {
@@ -15,7 +16,7 @@ const ReceipePage = () => {
   async function getData() {
     const data = await fetch("https://dummyjson.com/recipes");
     const json = await data.json();
-    const selectedRecipe = json.recipes.find((r) => r.id === Number(id));
+    const selectedRecipe = json.recipes.find((r) => r.id === Number(params.id));
     setRecipe(selectedRecipe);
     // console.log(json);
   }
