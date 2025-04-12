@@ -79,7 +79,7 @@ const Body = () => {
             </Link>
           ))
         ) : (
-          <p>Sorry, Please try Again</p>
+          <p>No recipe found please try again</p>
         )}
       </div>
     </>
