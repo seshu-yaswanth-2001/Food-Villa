@@ -1,24 +1,19 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
+import useRecipe from "../Utils/Hooks/useRecipe";
+import useOnline from "../Utils/Hooks/useOnline";
 
 const ReceipePage = () => {
   // useparams return id so directly destructing it
   // else you can write const param = useParams();\
   const params = useParams();
-  // const { id } = params;
-  const [recipe, setRecipe] = useState(null);
 
-  useEffect(() => {
-    getData();
-  }, []);
+  const recipe = useRecipe(params.id);
 
-  async function getData() {
-    const data = await fetch("https://dummyjson.com/recipes");
-    const json = await data.json();
-    const selectedRecipe = json.recipes.find((r) => r.id === Number(params.id));
-    setRecipe(selectedRecipe);
-    // console.log(json);
+  const online = useOnline();
+  if (!online) {
+    return <h1>No Internet Connection</h1>;
   }
 
   return !recipe ? (

@@ -15,7 +15,7 @@ class About extends React.Component {
     return (
       <>
         <h1>About page</h1>
-        <ProfileClass name="first" />
+        <ProfileClass name="First" />
       </>
     );
   }

@@ -3,12 +3,8 @@ import Card from "./Card";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
-
-function filterData(searchInput, recipes) {
-  return recipes.filter((recipe) =>
-    recipe?.name?.toLowerCase().includes(searchInput?.toLowerCase())
-  );
-}
+import { filterData } from "../Utils/helper";
+import useOnline from "../Utils/Hooks/useOnline";
 
 const Body = () => {
   // const [allRecipes, setAllRecipes] = useState(foodRecipes?.recipes);
@@ -39,6 +35,11 @@ const Body = () => {
     // console.log(jsonValue?.recipes);
     setAllRecipes(jsonValue?.recipes);
     setFilteredRecipes(jsonValue?.recipes);
+  }
+
+  const online = useOnline();
+  if(!online) {
+    return <h1>No interner connection</h1>
   }
 
   // if (!allRecipes) {

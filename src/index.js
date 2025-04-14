@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
@@ -10,6 +10,7 @@ import Error from "./components/Error";
 import Contact from "./components/Contact";
 import ReceipePage from "./components/ReceipePage";
 import Profile from "./components/Profile";
+import Shimmer from "./components/Shimmer";
 
 const AppLayout = () => {
   return (
@@ -20,6 +21,8 @@ const AppLayout = () => {
     </>
   );
 };
+
+const Instamart = lazy(() => import("./components/Instamart"));
 
 // we can pass childrens
 const appRouter = createBrowserRouter([
@@ -49,6 +52,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/foods/:id",
         element: <ReceipePage />,
+      },
+      {
+        path: "/instamart",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Instamart />
+          </Suspense>
+        ),
       },
     ],
   },

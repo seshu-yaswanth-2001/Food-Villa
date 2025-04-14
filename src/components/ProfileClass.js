@@ -36,6 +36,7 @@ class Profile extends React.Component {
 
     return (
       <>
+        <h1>name coming from PROPS: {this.props.name}</h1>
         <h2>Profile Page</h2>
         <h2>Name: {this.state.userinfo.name}</h2>
         <h2>User ID: {this.state.userinfo.id}</h2>
