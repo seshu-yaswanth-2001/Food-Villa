@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import useRecipe from "../Utils/Hooks/useRecipe";
 import useOnline from "../Utils/Hooks/useOnline";
+import { useDispatch } from "react-redux";
+import { addItem } from "../Utils/cartSlice";
 
 const ReceipePage = () => {
   // useparams return id so directly destructing it
@@ -16,6 +18,12 @@ const ReceipePage = () => {
     return <h1>No Internet Connection</h1>;
   }
 
+  const dispatch = useDispatch();
+
+  const handleCart = (item) => {
+    dispatch(addItem(item));
+  };
+
   return !recipe ? (
     <Shimmer />
   ) : (
@@ -25,7 +33,10 @@ const ReceipePage = () => {
           <h1>Ingredients</h1>
           <ul>
             {recipe.ingredients.map((data, index) => (
-              <li key={index}>{data}</li>
+              <li key={index}>
+                {data} -{" "}
+                <button onClick={() => handleCart(data)}>AddItem</button>
+              </li>
             ))}
           </ul>
         </div>

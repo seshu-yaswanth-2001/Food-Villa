@@ -5,6 +5,7 @@ class Profile extends React.Component {
     super(props);
     this.state = {
       userinfo: {},
+      count: 0,
     };
     console.log(this.props.name + " Child Constructor");
   }
@@ -40,6 +41,14 @@ class Profile extends React.Component {
         <h2>Profile Page</h2>
         <h2>Name: {this.state.userinfo.name}</h2>
         <h2>User ID: {this.state.userinfo.id}</h2>
+        <div>
+          <p>{this.state.count}</p>
+          <button
+            onClick={() => this.setState({ count: this.state.count + 1 })}
+          >
+            Increment
+          </button>
+        </div>
       </>
     );
   }

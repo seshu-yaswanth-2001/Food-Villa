@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../Utils/Hooks/useOnline";
+import UserContext from "../Utils/Hooks/UserContext";
+import { useSelector } from "react-redux";
 
 const Title = () => {
   return (
@@ -20,6 +22,10 @@ const Title = () => {
 export const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline();
+
+  const { userName } = useContext(UserContext);
+  const cartItems = useSelector((store) => store.cart.items);
+
   return (
     <div className="header">
       <Title />
@@ -37,10 +43,13 @@ export const Header = () => {
           <li>
             <Link to="/instamart">Instamart</Link>
           </li>
-          <li>Cart</li>
+          <li>
+            <Link to="/cart">Cart - {cartItems.length}</Link>
+          </li>
         </ul>
       </div>
       <h1>{isOnline ? "✅" : "❌"}</h1>
+      <h3>{userName.name}</h3>
       {isLoggedIn ? (
         <button onClick={() => setIsLoggedIn(false)}>Logout</button>
       ) : (

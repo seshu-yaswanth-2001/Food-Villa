@@ -1,10 +1,11 @@
 import Card from "./Card";
 // import { foodRecipes } from "../constants";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import { filterData } from "../Utils/helper";
 import useOnline from "../Utils/Hooks/useOnline";
+import UserContext from "../Utils/Hooks/UserContext";
 
 const Body = () => {
   // const [allRecipes, setAllRecipes] = useState(foodRecipes?.recipes);
@@ -12,6 +13,7 @@ const Body = () => {
   // const [filteredRecipes, setFilteredRecipes] = useState(foodRecipes?.recipes);
   const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const { userName, setUserName } = useContext(UserContext);
 
   const handleSearch = () => {
     const data = filterData(searchInput, allRecipes);
@@ -38,8 +40,8 @@ const Body = () => {
   }
 
   const online = useOnline();
-  if(!online) {
-    return <h1>No interner connection</h1>
+  if (!online) {
+    return <h1>No interner connection</h1>;
   }
 
   // if (!allRecipes) {
@@ -71,6 +73,16 @@ const Body = () => {
         <button className="Reset-Button" onClick={handleReset}>
           Reset
         </button>
+        <input
+          type="text"
+          value={userName.name}
+          onChange={(e) => {
+            setUserName({
+              name: e.target.value,
+              email: userName.email,
+            });
+          }}
+        />
       </div>
       <div className="list">
         {filteredRecipes.length > 0 ? (
